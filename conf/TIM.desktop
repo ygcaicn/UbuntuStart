@@ -1,0 +1,10 @@
+[Desktop Entry]
+Categories=Network;InstantMessaging;
+Exec=$HOME/opt/qq.sh
+Icon=tim
+Name=Wine QQ
+NoDisplay=false
+StartupNotify=true
+Terminal=0
+Type=Application
+Name[en_US]=TIM.desktop
