@@ -149,7 +149,8 @@ install_Third(){
   echo -e "${green}install FoxitReader...${plain}"
   foxitsoftwareLink="http://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/linux/2.x/2.4/en_us/FoxitReader.enu.setup.2.4.4.0911.x64.run.tar.gz"
   foxitsoftwareName="foxit.tar.gz"
-  wget -O ${downdir}/${foxitsoftwareName} -c ${foxitsoftwareLink}
+  #wget -O ${downdir}/${foxitsoftwareName} -c ${foxitsoftwareLink}
+  axel -n 100 --output=${downdir}/${foxitsoftwareName} ${foxitsoftwareLink}
   pushd ${downdir}/
   tar -zxvf ${foxitsoftwareName}
   popd
@@ -161,14 +162,16 @@ install_Third(){
   echo -e "${green}install WPS...${plain}"
   wpsLink="http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb"
   wpsName="wps.deb"
-  wget -O ${downdir}/${wpsName} -c ${wpsLink}
+  #wget -O ${downdir}/${wpsName} -c ${wpsLink}
+  axel -n 100 --output=${downdir}/${wpsName} ${wpsLink}
   dpkg -i ${downdir}/${wpsName}
 
   # Proxyee
   echo -e "${green}install Proxyee...${plain}"
   ProxyeeLink="https://github.com/proxyee-down-org/proxyee-down/releases/download/3.4/proxyee-down-main.jar"
   ProxyeeName="proxyee-down-main.jar"
-  wget -O ${downdir}/${ProxyeeName} -c ${ProxyeeLink}
+  #wget -O ${downdir}/${ProxyeeName} -c ${ProxyeeLink}
+  axel -n 100 --output=${downdir}/${ProxyeeName} ${ProxyeeLink}
   mkdir $HOME/opt/proxyee
   cp ${downdir}/${ProxyeeName} $HOME/opt/proxyee/
   chmod +x $HOME/opt/proxyee/${ProxyeeName}
@@ -178,7 +181,8 @@ install_Third(){
   echo -e "${green}install CLion...${plain}"
   clionLink="https://download.jetbrains.8686c.com/cpp/CLion-2018.2.6.tar.gz"
   clionName="clion.tar.gz"
-  wget -O ${downdir}/${clionName} -c ${clionLink}
+  #wget -O ${downdir}/${clionName} -c ${clionLink}
+  axel -n 100 --output=${downdir}/${clionName} ${clionLink}
   cp ${downdir}/${clionName} ${HOME}/opt/
   pushd ${HOME}/opt/
   tar -zxvf ${clionName}
@@ -192,7 +196,8 @@ install_Third(){
   echo -e "${green}install pycharmPro...${plain}"
   pycharmLink="https://download.jetbrains.8686c.com/python/pycharm-professional-2018.2.5.tar.gz"
   pycharmName="pycharmPro.tar.gz"
-  wget -O ${downdir}/${pycharmName} -c ${pycharmLink}
+  #wget -O ${downdir}/${pycharmName} -c ${pycharmLink}
+  axel -n 100 --output=${downdir}/${pycharmName} ${pycharmLink}
   cp ${downdir}/${pycharmName} ${HOME}/opt/
   pushd ${HOME}/opt/
   tar -zxvf ${pycharmName}
