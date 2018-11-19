@@ -116,6 +116,8 @@ _install_Docker(){
    apt-get install docker-ce -y
    systemctl enable docker
    systemctl start docker
+   groupadd docker
+   usermod -aG docker $USER
 }
 
 install_Tim(){
