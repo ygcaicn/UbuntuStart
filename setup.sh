@@ -114,6 +114,12 @@ _install_Docker(){
 
    apt-get update
    apt-get install docker-ce -y
+
+  if [ ! -d "/etc/docker" ]; then
+    mkdir -p /etc/docker
+  fi
+
+  \cp -fr ${dir}/conf/daemon[etc_docker_daemon].json /etc/docker/daemon.json
    systemctl enable docker
    systemctl start docker
    groupadd docker
