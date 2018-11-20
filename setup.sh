@@ -175,7 +175,8 @@ install_Third(){
   mkdir $HOME/opt/proxyee
   cp ${downdir}/${ProxyeeName} $HOME/opt/proxyee/
   chmod +x $HOME/opt/proxyee/${ProxyeeName}
-  apt-get install openjdk-8-jre openjfx
+
+  apt-get install openjdk-8-jre openjfx -y
 
   # CLion
   echo -e "${green}install CLion...${plain}"
@@ -206,6 +207,9 @@ install_Third(){
   . ${HOME}/opt/${cli}/bin/pycharm.sh
   popd
   rm -rf ${HOME}/opt/${pycharmName}
+
+
+  chown -R $USER:$USER $HOME/opt/
 }
 install_Fonts(){
 echo -e "${green}install Fonts...${plain}"
