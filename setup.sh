@@ -225,24 +225,25 @@ install_Third(){
 
   chown -R $USER:$USER $HOME/opt/
 }
+
 install_Fonts(){
-echo -e "${green}install Fonts...${plain}"
-mkfontscale
-mkfontdir
-fc-cache -fv
+  echo -e "${green}install Fonts...${plain}"
+  mkfontscale
+  mkfontdir
+  fc-cache -fv
 }
 
 install_all(){
-add_repo
-change_mirror
-apt_conf
-flash_conf
-install_something
-remove_something
-install_Tim
-add_alias
-install_Third
-install_Fonts
+  add_repo
+  change_mirror
+  apt_conf
+  flash_conf
+  install_something
+  remove_something
+  install_Tim
+  add_alias
+  install_Third
+  install_Fonts
 
 # 变量不替换
 grep get_pid ${HOME}/.bashrc &> /dev/null
