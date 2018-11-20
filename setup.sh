@@ -80,6 +80,20 @@ function flash_conf {
 function install_something {
   echo -e "${green}install some basics software...${plain}"
   apt-get install wget vim git fcitx-sunpinyin tweak chrome-gnome-shell google-chrome-stable guake net-tools fcitx fcitx-ui-qimpanel fcitx-config-common fcitx-googlepinyin  rar unzip unrar  libgconf2-4 software-properties-common apt-transport-https -y
+
+  #guake auto start
+cat<<EOF > $HOME/.config/autostart/guake.desktop
+  [Desktop Entry]
+  Type=Application
+  Exec=/usr/bin/guake
+  Hidden=false
+  NoDisplay=false
+  X-GNOME-Autostart-enabled=true
+  Name[en_US]=Guake
+  Name=Guake
+  Comment[en_US]=
+  Comment=
+EOF
 }
 
 function remove_something {
@@ -230,9 +244,39 @@ add_alias
 install_Third
 install_Fonts
 
-cat<<EOF >> /etc/bash.bashrc
+# 变量不替换
+grep get_pid ${HOME}/.bashrc &> /dev/null
+[[ $? -eq 1 ]] &&
+cat<<"EOF" >> ${HOME}/.bashrc
 get_pid(){
-  ps aux | grep -v grep | grep \${1} | awk '{print \$2}'
+  ps aux | grep -v grep | grep ${1} | awk '{print $2}'
+}
+dkill_qq(){
+  docker container ls -al | awk 'NR!=1 && $2 ~ /qq/ {print $1}' | xargs  docker container stop
+}
+EOF
+
+
+# 变量替换
+grep start_qq ${HOME}/.bashrc &> /dev/null
+[[ $? -eq 1 ]] &&
+cat<<EOF >> ${HOME}/.bashrc
+start_qq(){
+    docker container run -d --name qq --rm \
+    --device /dev/snd \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+    -v $HOME/TencentFiles:/TencentFiles \
+    -v $HOME:/home\
+    -e DISPLAY=unix$DISPLAY \
+    -e XMODIFIERS=@im=fcitx \
+    -e QT_IM_MODULE=fcitx \
+    -e GTK_IM_MODULE=fcitx \
+    -e AUDIO_GID=`getent group audio | cut -d: -f3` \
+    -e VIDEO_GID=`getent group video | cut -d: -f3` \
+    -e GID=`id -g` \
+    -e UID=`id -u` \
+    bestwu/qq:office
 }
 EOF
 
