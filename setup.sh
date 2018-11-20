@@ -189,7 +189,7 @@ install_Third(){
   tar -zxvf ${clionName}
   cli=`ls | grep clion`
   chmod +x ${HOME}/opt/${cli}/bin/clion.sh
-  . ${HOME}/opt/${cli}/bin/clion.sh
+  ${HOME}/opt/${cli}/bin/clion.sh &
   popd
   rm -rf ${HOME}/opt/${clionName}
 
@@ -204,7 +204,7 @@ install_Third(){
   tar -zxvf ${pycharmName}
   pyc=`ls | grep pycharm`
   chmod +x ${HOME}/opt/${cli}/bin/pycharm.sh
-  . ${HOME}/opt/${cli}/bin/pycharm.sh
+  ${HOME}/opt/${cli}/bin/pycharm.sh &
   popd
   rm -rf ${HOME}/opt/${pycharmName}
 
