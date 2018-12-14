@@ -58,8 +58,8 @@ function change_mirror {
   echo -e "${green}change_mirror...${plain}"
   t=$(date +%y%m%d+%H%M%S)
   cp /etc/apt/sources.list /etc/apt/sources.list.${t}
-  sed -e --follow-symlinks 's/http:\/\/us.archive.ubuntu.com/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
-  sed -e --follow-symlinks 's/http:\/\/cn.archive.ubuntu.com/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+  sed -i --follow-symlinks -e 's/http:\/\/us.archive.ubuntu.com/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+  sed -i --follow-symlinks -e 's/http:\/\/cn.archive.ubuntu.com/https:\/\/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 }
 
 function apt_conf {
